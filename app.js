@@ -7,7 +7,8 @@ const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const mongoDB = "mongodb://localhost:27017/localLibrary";
+const catalogRouter = require("./routes/catalog");
+const mongoDB = process.env.DB_URI ?? "mongodb://localhost:27017/localLibrary";
 const app = express();
 mongoose.connect(mongoDB, {
 	useNewUrlParser: true,
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/catalog", catalogRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
