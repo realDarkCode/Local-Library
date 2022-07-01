@@ -8,7 +8,7 @@ const logger = require("morgan");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const catalogRouter = require("./routes/catalog");
-const mongoDB = process.env.DB_URI ?? "mongodb://localhost:27017/localLibrary";
+const mongoDB = process.env.DB_URI || "mongodb://localhost:27017/localLibrary";
 const app = express();
 mongoose.connect(mongoDB, {
 	useNewUrlParser: true,
